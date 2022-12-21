@@ -27,4 +27,8 @@ class Person < Nameable
   def can_use_services?
     return true if of_age || @parent_permission
   end
+
+  def add_rental(book, date)
+    Rental.new(date, book, self)
+  end
 end
