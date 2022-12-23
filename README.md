@@ -24,7 +24,7 @@
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 Morse Code <a name="about-project"></a>
+# 📖 School Library <a name="about-project"></a>
 
 This is a program demonstrates the use of OOP.
 
