@@ -5,15 +5,27 @@ module AppModule
     puts ''
     case person_choice
     when 's'
-      student_input
+      @all_persons.push(CreateStudent.new.student_input)
+      puts ''
+      prompt
     when 't'
-      teacher_input
+      @all_persons.push(CreateTeacher.new.teacher_input)
+      puts ''
+      prompt
     else
       puts 'please select s or t'
       student_or_teacher
     end
   end
 
+  def book_input
+    @all_books.push(CreateBook.new.book_creation)
+    puts ''
+    prompt
+  end
+end
+
+class CreateStudent
   def student_input
     puts "What is this student's name?"
     student_name = gets.chomp
@@ -28,13 +40,11 @@ module AppModule
     student_permission = gets.chomp
     permission = student_permission == 'y'
 
-    new_student = Student.new(student_class, student_age, student_name, parent_permission: permission)
-    @all_persons.push(new_student)
-
-    puts ''
-    prompt
+    Student.new(student_class, student_age, student_name, parent_permission: permission)
   end
+end
 
+class CreateTeacher
   def teacher_input
     puts "What is this teacher's name?"
     teacher_name = gets.chomp
@@ -45,10 +55,18 @@ module AppModule
     puts "What is this teacher's age?"
     teacher_age = gets.chomp
 
-    new_teacher = Teacher.new(teacher_specialization, teacher_age, teacher_name)
-    @all_persons.push(new_teacher)
+    Teacher.new(teacher_specialization, teacher_age, teacher_name)
+  end
+end
 
+class CreateBook
+  def book_creation
+    puts 'What is the title of this book'
+    book_title = gets.chomp.to_s
     puts ''
-    prompt
+    puts 'Who is the author of this book'
+    book_author = gets.chomp.to_s
+
+    Book.new(book_title, book_author)
   end
 end

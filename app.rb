@@ -8,7 +8,7 @@ require_relative 'rental'
 require_relative 'student'
 require_relative 'teacher'
 require_relative 'trimmer_decorator'
-require_relative 'persons_module'
+require_relative 'creation_module'
 require_relative 'display_module'
 
 class App
@@ -21,20 +21,6 @@ class App
     @all_books = []
     @all_persons = []
     @all_rentals = []
-  end
-
-  def book_input
-    puts 'What is the title of this book'
-    book_title = gets.chomp.to_s
-    puts ''
-    puts 'Who is the author of this book'
-    book_author = gets.chomp.to_s
-
-    new_book = Book.new(book_title, book_author)
-    @all_books.push(new_book)
-
-    puts ''
-    prompt
   end
 
   def rental_creation
@@ -81,25 +67,19 @@ class App
   def case_conditional(selection)
     puts ''
     case selection
-    when 1
-      student_or_teacher
-    when 2
-      book_input
-    when 3
-      rentals_input
-    when 4
-      display_persons
-    when 5
-      diplay_books
-    when 6
-      diplay_rentals
+    when 1 then student_or_teacher
+    when 2 then book_input
+    when 3 then rentals_input
+    when 4 then display_available(@all_persons, PersonItems.new, 'persons')
+    when 5 then display_available(@all_books, BookItems.new, 'books')
+    when 6 then display_available(@all_rentals, RentalItems.new, 'rentals')
     else
       puts 'Goodbye'
     end
   end
 
   def prompt
-    puts 'Please make a selection (1-9)'
+    puts 'Please make a selection (1-6 / Enter)'
     puts '(1) - Add a person to the database'
     puts '(2) - Add a book to the archives'
     puts '(3) - Process a rental'
