@@ -70,9 +70,9 @@ class App
     when 1 then student_or_teacher
     when 2 then book_input
     when 3 then rentals_input
-    when 4 then display_available(@all_persons, 'persons')
-    when 5 then display_available(@all_books, 'books')
-    when 6 then display_available(@all_rentals, 'rentals')
+    when 4 then display_persons
+    when 5 then display_books
+    when 6 then display_rentals
     else
       puts 'Goodbye'
     end
